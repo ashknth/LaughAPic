@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light background color */
+        }
+        .image-container {
+            margin-bottom: 30px; /* Spacing between images */
+        }
+        .comment {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font for comments */
+            font-size: 1.2rem; /* Larger font size for comments */
+        }
+        .header, .footer {
+            background-color: #ffcc00; /* Header and footer background color */
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Laugh-a-Pic</h1>
+        {% if username %}
+            <p>Hello, {{ username }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+        {% endif %}
+    </div>
+    <div class="container">
+        <h1 class="mt-5">Funny Picture Gallery</h1>
+        <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <button type="submit" class="btn btn-success">Upload Picture</button>
+        </form>
+        <div class="mt-4">
+            {% for image in images %}
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="Funny Image" style="max-width: 300px; border-radius: 8px;">
+                    <p class="comment">{{ image.comment }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Laugh-a-Pic. All rights reserved.</p>
+    </div>
+</body>
+</html>
