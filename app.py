@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import os
 from comments import get_random_comment
+import signal
+signal.signal(signal.SIGINT, handler_function)
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
