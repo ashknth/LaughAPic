@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import os
+import streamlit as st
+from PIL import Image
+import random
+import os
 from comments import get_random_comment  # Ensure 'comments.py' exists and has 'get_random_comment()'
 
 app = Flask(__name__)
